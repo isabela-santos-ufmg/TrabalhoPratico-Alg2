@@ -37,10 +37,10 @@ def montar_endereco(row):
     Monta a string de endereço a partir das colunas da planilha.
     row é uma tupla com os valores na ordem das colunas do Excel.
     """
-    desc_log = row[3] or ""   # DESC_LOGRADOURO  (ex: "RUA", "AVE")
-    nome_log = row[4] or ""   # NOME_LOGRADOURO  (ex: "DO OURO")
-    numero   = row[5] or ""   # NUMERO_IMOVEL
-    bairro   = row[7] or ""   # NOME_BAIRRO
+    desc_log = str(row[3] or "")   # DESC_LOGRADOURO  (ex: "RUA", "AVE")
+    nome_log = str(row[4] or "")   # NOME_LOGRADOURO  (ex: "DO OURO")
+    numero   = str(row[5] or "")   # NUMERO_IMOVEL
+    bairro   = str(row[7] or "")   # NOME_BAIRRO
 
     return f"{desc_log} {nome_log}, {numero}, {bairro}, Belo Horizonte, MG, Brasil".strip()
 
