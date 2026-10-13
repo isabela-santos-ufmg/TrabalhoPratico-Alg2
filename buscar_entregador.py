@@ -79,32 +79,37 @@ class Trie:
         if not node:
             return []
         
-        node_atual = self.root
-        string_buscada = node
-        chave_restante = node
+        atual = self.root
+        restante = node
         
-        while(len(string_buscada) > 0):
-            filho_match = None
+        while True:
+            filho_match = atual.filhos.get(restante[0])
            
-            for rotulo_filho, filho in node_atual.filhos.items():
-                if chave_restante.startswith(rotulo_filho):
-                    filho_match = filho_node
-                    break
-            
             # se nenhum filho corresponde ao inicio da chave, o caminho nao existe
             if not filho_match:
                 return []
             
-            # avançar nó
-            node_atual = filho_match
-            chave_restante = chave_restante[len(node_atual.rotulo):]
+            l = self.longest_prefix(restante, filho_match.rotulo)
+            # rotulo do filho corresponde completamente ao restante da chave, então continue descendo na árvore
+            if l == len(filho_match.rotulo):
+                restante = restante[l:]
+                atual = filho_match
+                if restante == "":
+                    return atual.valores
+            # divergiu em algum momento, então não existe caminho
+            else:
+                return []
+    def coletar(self, node: Node) -> list:
+        resultado = []
+        pilha = [node]
 
-        # verifica se chegou em uma folha com valores
-        if len(chave_restante) == 0 and node_atual.is_folha:
-            return node_atual.valores
+        while pilha:
+            n = pilha.pop()
+            resultado.extend(n.valores)
+            pilha.extend(n.filhos.values())
+
+        return resultado
             
-        return []
-
 t = Trie()
 t.addNode("abcd1", {"id": 1})
 t.addNode("abcd2", {"id": 2})
