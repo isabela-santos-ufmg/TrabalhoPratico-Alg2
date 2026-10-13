@@ -1,4 +1,5 @@
 import numpy as np 
+import pandas as pd
 
 """
 esperado que bares dict seja: 
@@ -42,6 +43,13 @@ def gerar_entregadores(N: int, bares: dict) -> dict:
             })
             id_global+=1
     return entregadores
+
+    def armazenar_dados_entregadores():
+        entregadores = gerar_entregadores()
+        df = pd.Dataframe(entregadoes)
+        df.to_csv("entregadores.csv", index=False, encoding="utf-8")
+
+
 
 
 
