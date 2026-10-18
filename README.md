@@ -33,7 +33,15 @@ O projeto gerencia versões específicas do Python através do pyenv. Se você n
  ```bash
 make install-pyenv
 ```
-### 3. Rodar o Programa 
+### 3. Rodar o Programa
+
+#### Geolocalização 
+Essa é uma observação principalmente para os corretores do trabalho. Caso queiram testar exatamente a implementação de geolocalização dos em latitudes e longitudes, poderão rodar, **apenas uma vez** o comando a seguir que gera o material `data/output/bares_com_geohash.xlsx`:
+ ```bash
+make geocode
+```
+Obs: Lembrando que todos os dados necessários para rodar a visualização constam nesse repositório, incluindo esse material. 
+#### Rodar a visualização 
 Abra o terminal na raiz do programa e rode:
  ```bash
 make run
