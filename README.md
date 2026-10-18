@@ -11,3 +11,7 @@ estruturas, o aluno compreenderá com maior profundidade os detalhes relacionado
 estruturas. Além disso, os alunos terão a oportunidade de trabalhar com bibliotecas para
 manipulação, processamento e plotagem de mapas e dados geográficos.
 
+limites geograficos bh [metadados](https://dados.pbh.gov.br/pt_BR/dataset/limite-municipio)
+
+limites geográficos bairros de bh [metadados](https://forest-gis.com/gis-resources/bairros-de-belo-horizonte-mg-fonte-geoservicos-pbh-gov-br/)
+
