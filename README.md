@@ -15,3 +15,5 @@ limites geograficos bh [metadados](https://dados.pbh.gov.br/pt_BR/dataset/limite
 
 limites geográficos bairros de bh [metadados](https://forest-gis.com/gis-resources/bairros-de-belo-horizonte-mg-fonte-geoservicos-pbh-gov-br/)
 
+[bounding box bh](https://pt-br.topographic-map.com/map-vc85k/Belo-Horizonte/?center=-20.02638%2C-43.49281&zoom=9)
+
