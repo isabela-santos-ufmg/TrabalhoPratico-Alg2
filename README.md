@@ -17,3 +17,22 @@ limites geográficos bairros de bh [metadados](https://forest-gis.com/gis-resour
 
 [bounding box bh](https://pt-br.topographic-map.com/map-vc85k/Belo-Horizonte/?center=-20.02638%2C-43.49281&zoom=9)
 
+Primeiro, instale make. Para distribuição Ubunto, o guia a seguir tem o passo a passo [tutorial](https://www.geeksforgeeks.org/installation-guide/how-to-install-make-on-ubuntu/)
+Depois, rode:
+`make run`
+
+
+### Proximos passos 
+mostrar carregamento enquanto nao gera entregadores 
+
+dar zoom onde pesquisar automatico 
+
+limitar mapa em bh 
+
+mudar design dos botões e pesquisa
+
+verificar momento que apareceram 99 entregadores ao inves de 100
+
+mostrar uma escala
+
+prepara tudo em docker para que rode em qualuqer sistema e não precise de nada do usuário
