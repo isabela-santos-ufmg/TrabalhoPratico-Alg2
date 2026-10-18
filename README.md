@@ -27,6 +27,7 @@ Caso você não possua o `make` instalado no seu sistema operacional, veja abaix
   ```bash
   xcode-select --install
 ```
+**Como rodar no Windows**: Recomendamos a utilização do [WSL](https://learn.microsoft.com/pt-br/windows/wsl/)para executar o projeto, garantindo total compatibilidade com o Makefile, scripts de automação e dependências geoespaciais.
 ### 2. Pyenv
 O projeto gerencia versões específicas do Python através do pyenv. Se você não tiver o pyenv instalado em sua máquina, o comando do Makefile foi estruturado para auxiliar na verificação, mas é recomendável instalá-lo previamente para garantir a compatibilidade correta da versão do Python especificada (3.10.12).
  ```bash
