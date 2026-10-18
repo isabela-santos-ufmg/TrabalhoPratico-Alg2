@@ -15,3 +15,22 @@ limites geograficos bh [metadados](https://dados.pbh.gov.br/pt_BR/dataset/limite
 
 limites geográficos bairros de bh [metadados](https://forest-gis.com/gis-resources/bairros-de-belo-horizonte-mg-fonte-geoservicos-pbh-gov-br/)
 
+Primeiro, instale make. Para distribuição Ubunto, o guia a seguir tem o passo a passo [tutorial](https://www.geeksforgeeks.org/installation-guide/how-to-install-make-on-ubuntu/)
+Depois, rode:
+`make run`
+
+
+### Proximos passos 
+mostrar carregamento enquanto nao gera entregadores 
+
+dar zoom onde pesquisar automatico 
+
+limitar mapa em bh 
+
+mudar design dos botões e pesquisa
+
+verificar momento que apareceram 99 entregadores ao inves de 100
+
+mostrar uma escala
+
+prepara tudo em docker para que rode em qualuqer sistema e não precise de nada do usuário
