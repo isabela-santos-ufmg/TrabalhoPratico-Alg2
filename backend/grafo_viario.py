@@ -1,7 +1,7 @@
 import os
 import osmnx as ox
 
-GRAFO_CACHE = "data/output/grafo_bh.graphml"
+GRAFO_CACHE = "data/input/grafo_bh.graphml"
 
 def carregar_grafo_bh():
     if os.path.exists(GRAFO_CACHE):
