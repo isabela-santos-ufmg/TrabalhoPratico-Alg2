@@ -1,0 +1,235 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F7F7F7;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.app-container {
+    background-color: #F7F7F7;
+    min-height: 100vh;
+}
+
+.header-container {
+    background-color: #FFFFFF;
+    padding: 12px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #EFEFEF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.logo-text {
+    color: #EA1D2C;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-link-active {
+    color: #EA1D2C;
+    font-weight: 600;
+    border-bottom: 2px solid #EA1D2C;
+    padding-bottom: 14px;
+    cursor: pointer;
+}
+
+.nav-link {
+    color: #717171;
+    cursor: pointer;
+}
+
+.header-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333333;
+    font-size: 14px;
+}
+
+.user-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #FEE5E7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #EA1D2C;
+    font-weight: bold;
+}
+
+.main-content {
+    max-width: 1340px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1E1E1E;
+    margin: 0 0 4px 0;
+}
+
+.section-subtitle {
+    color: #717171;
+    margin: 0;
+}
+
+.live-badge {
+    font-size: 13px;
+    color: #717171;
+    background-color: #FFFFFF;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid #EFEFEF;
+}
+
+.grid-container {
+    display: flex;
+    gap: 20px;
+}
+
+.sidebar-panel {
+    width: 340px;
+    flex-shrink: 0;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    border: 1px solid #ECECEC;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.step-number {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #FEE5E7;
+    color: #EA1D2C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.step-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #1E1E1E;
+}
+
+.input-label {
+    font-size: 12px;
+    color: #717171;
+    margin: 0 0 8px 0;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #EA1D2C;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #F0F0F0;
+    margin: 0;
+}
+
+.status-box {
+    background-color: #FFF2F3;
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.status-text {
+    font-size: 12px;
+    color: #991B1B;
+    font-weight: 500;
+}
+
+.map-container {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid #ECECEC;
+    background-color: #FFF;
+}
+
+.table-section {
+    margin-top: 24px;
+}
+
+.table-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E1E1E;
+    margin: 0 0 12px 0;
+}
+
+.custom-input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #DDD;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.custom-input:focus {
+    border-color: #EA1D2C;
+}
+
+.custom-input::-webkit-outer-spin-button,
+.custom-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-input[type=number] {
+    -moz-appearance: textfield;
+}
