@@ -1,4 +1,5 @@
 import os
+import time
 from backend.bairros import BairrosOficiaisBH
 from backend.bares import carregar_bares
 from backend.geohash import encode, haversine
@@ -75,135 +76,64 @@ app.layout = html.Div(
                     ],
                 ),
                 html.Div(
-                    className="grid-container",
-                    children=[
-                        html.Div(
-                            className="sidebar-panel",
-                            children=[
-                                # PASSO 1: ENTREGADORES
-                                html.Div(
-                                    children=[
-                                        html.Div(
-                                            className="step-header",
-                                            children=[
-                                                html.Span("1", className="step-number"),
-                                                html.Span(
-                                                    "Comece pelos entregadores",
-                                                    className="step-title",
-                                                ),
-                                            ],
-                                        ),
-                                        html.P(
-                                            "Quantidade para distribuir na malha viária:",
-                                            className="input-label",
-                                        ),
-                                        dcc.Input(
-                                            id="inp-qtd",
-                                            type="number",
-                                            value=150,
-                                            min=1,
-                                            step=1,
-                                            className="custom-input",
-                                        ),
-                                        dcc.Loading(
-                                            id="loading-gerar",
-                                            type="dot",
-                                            color="#EA1D2C",
-                                            children=[
-                                                html.Button(
-                                                    "🔀 Gerar Entregadores",
-                                                    id="btn-gerar",
-                                                    n_clicks=0,
-                                                    className="btn-primary",
-                                                )
-                                            ],
-                                        ),
-                                    ]
-                                ),
-                                html.Hr(className="divider"),
-                                # PASSO 2: RESTAURANTE (Único)
-                                html.Div(
-                                    children=[
-                                        html.Div(
-                                            className="step-header",
-                                            children=[
-                                                html.Span("2", className="step-number"),
-                                                html.Span(
-                                                    "Encontre o restaurante",
-                                                    className="step-title",
-                                                ),
-                                            ],
-                                        ),
-                                        dcc.Dropdown(
-                                            id="dd-bar",
-                                            placeholder="Digite o nome, rua ou bairro...",
-                                            clearable=True,
-                                            searchable=True,
-                                            options=BUSCADOR_BARES.obter_opcoes_iniciais(40),
-                                            style={"fontSize": "13px", "borderRadius": "10px"},
-                                        ),
-                                    ]
-                                ),
-                                html.Hr(className="divider"),
-                                # PASSO 3: RAIO E BUSCA
-                                html.Div(
-                                    children=[
-                                        html.Div(
-                                            className="step-header",
-                                            children=[
-                                                html.Span("3", className="step-number"),
-                                                html.Span(
-                                                    "Raio de atendimento (km)",
-                                                    className="step-title",
-                                                ),
-                                            ],
-                                        ),
-                                        dcc.Input(
-                                            id="inp-raio",
-                                            type="number",
-                                            value=2.0,
-                                            min=0.1,
-                                            max=50.0,
-                                            step=0.1,
-                                            className="custom-input",
-                                            style={"marginBottom": "8px"},
-                                        ),
-                                        dcc.Loading(
-                                            id="loading-buscar",
-                                            type="dot",
-                                            color="#EA1D2C",
-                                            children=[
-                                                html.Button(
-                                                    "🔍 Buscar Entregadores",
-                                                    id="btn-buscar",
-                                                    n_clicks=0,
-                                                    className="btn-primary",
-                                                    style={"padding": "11px"},
-                                                )
-                                            ],
-                                        ),
-                                    ]
-                                ),
-                                dcc.Loading(
-                                    id="loading-status",
-                                    type="circle",
-                                    color="#EA1D2C",
-                                    children=[
-                                        html.Div(
-                                            className="status-box",
-                                            children=[
-                                                html.Span("🛵", style={"fontSize": "18px"}),
-                                                html.Div(
-                                                    id="status",
-                                                    children="Sistema pronto para gerar entregadores.",
-                                                    className="status-text",
-                                                ),
-                                            ],
-                                        )
-                                    ],
-                                ),
-                            ],
+                    [
+                        html.Label("Quantidade de entregadores:"),
+                        dcc.Input(
+                            id="inp-qtd",
+                            type="number",
+                            value=100,
+                            min=10,
+                            max=500,
+                            step=10,
+                            style={"width": "100%", "marginBottom": "8px"},
                         ),
+                        html.Button(
+                            "Gerar Entregadores",
+                            id="btn-gerar",
+                            n_clicks=0,
+                            style={
+                                "width": "100%",
+                                "padding": "8px",
+                                "marginBottom": "16px",
+                            },
+                        ),
+                        html.Hr(),
+                        # BARRA ÚNICA DE BUSCA E SELEÇÃO
+                        html.Label("Buscar Bar (Nome, Rua ou Bairro):"),
+                        dcc.Dropdown(
+                            id="dd-bar",
+                            placeholder="Digite para pesquisar em tempo real...",
+                            clearable=False,
+                            searchable=True,
+                            options=BUSCADOR_BARES.obter_opcoes_iniciais(40),
+                            style={"marginBottom": "16px"},
+                        ),
+                        html.Hr(),
+                        html.Label("Raio de busca (km):"),
+                        dcc.Input(
+                            id="inp-raio",
+                            type="number",
+                            value=2.0,
+                            min=0.1,
+                            max=30.0,
+                            step=0.1,
+                            style={"width": "100%", "marginBottom": "8px"},
+                        ),
+                        html.Button(
+                            "Buscar Entregadores",
+                            id="btn-buscar",
+                            n_clicks=0,
+                            style={
+                                "width": "100%",
+                                "padding": "8px",
+                                "backgroundColor": "#4CAF50",
+                                "color": "white",
+                                "border": "none",
+                                "cursor": "pointer",
+                                "marginBottom": "16px",
+                            },
+                        ),
+                        html.Hr(),
                         html.Div(
                             className="map-container",
                             children=[
@@ -376,7 +306,10 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
 
     raio = float(raio or 2.0)
 
+    t0 = time.perf_counter()
     trie = construir_trie(entregadores)
+    t1 = time.perf_counter()
+
     encontrados = buscar_entregadores_com_bordas(
         trie,
         bar["lat"],
@@ -384,6 +317,14 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
         raio_km=raio,
         haversine_func=haversine,
     )
+    t2 = time.perf_counter()
+
+    ms_trie = (t1 - t0) * 1000
+    ms_busca = (t2 - t1) * 1000
+    ms_total = (t2 - t0) * 1000
+    print(f"Construção Trie : {ms_trie:.2f} ms")
+    print(f"Busca + filtro  : {ms_busca:.2f} ms")
+    print(f"Total           : {ms_total:.2f} ms")
 
     ids_encontrados = {e["id"] for e in encontrados}
 
@@ -430,16 +371,18 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
                 f"★ {e['id']} (Mais Próximo)" if e["id"] == id_mais_proximo else e["id"]
             ),
             "bairro": bairro_nome,
-            "dist": f"{dist:.2f}",
+            "dist": f"{dist:.4f}",
             "tempo": f"{tempo:.0f} min",
             "gh": e.get("geohash", encode(e["lat"], e["lon"], 8)),
         })
 
     msg = (
-        f"{len(encontrados)} entregadores no raio | Menor rota:"
-        f" {dist_rota_km:.2f} km"
-        if id_mais_proximo
-        else "Nenhum entregador no raio selecionado."
+        f"Bar: {bar['nome']} | Encontrados: {len(encontrados)} | "
+        + (
+            f"Distância real da rota (ruas): {dist_rota_km:.2f} km"
+            if id_mais_proximo
+            else "Nenhum entregador no raio."
+        )
     )
 
     return fig, linhas, msg
