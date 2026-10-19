@@ -1,4 +1,5 @@
 import os
+import time
 from backend.bairros import BairrosOficiaisBH
 from backend.bares import carregar_bares
 from backend.geohash import encode, haversine
@@ -42,9 +43,8 @@ app.layout = html.Div(
                         dcc.Input(
                             id="inp-qtd",
                             type="number",
-                            value=100,
+                            value=200,
                             min=10,
-                            max=500,
                             step=10,
                             style={"width": "100%", "marginBottom": "8px"},
                         ),
@@ -224,7 +224,10 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
 
     raio = float(raio or 2.0)
 
+    t0 = time.perf_counter()
     trie = construir_trie(entregadores)
+    t1 = time.perf_counter()
+
     encontrados = buscar_entregadores_com_bordas(
         trie,
         bar["lat"],
@@ -232,6 +235,14 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
         raio_km=raio,
         haversine_func=haversine,
     )
+    t2 = time.perf_counter()
+
+    ms_trie = (t1 - t0) * 1000
+    ms_busca = (t2 - t1) * 1000
+    ms_total = (t2 - t0) * 1000
+    print(f"Construção Trie : {ms_trie:.2f} ms")
+    print(f"Busca + filtro  : {ms_busca:.2f} ms")
+    print(f"Total           : {ms_total:.2f} ms")
 
     ids_encontrados = {e["id"] for e in encontrados}
 
@@ -278,7 +289,7 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
                 f"★ {e['id']} (Mais Próximo)" if e["id"] == id_mais_proximo else e["id"]
             ),
             "bairro": bairro_nome,
-            "dist": f"{dist:.2f}",
+            "dist": f"{dist:.4f}",
             "tempo": f"{tempo:.0f} min",
             "gh": e.get("geohash", encode(e["lat"], e["lon"], 8)),
         })
@@ -286,10 +297,11 @@ def cb_buscar(n_clicks, bar, raio, entregadores):
     msg = (
         f"Bar: {bar['nome']} | Encontrados: {len(encontrados)} | "
         + (
-            f"Distância real da rota (ruas): {dist_rota_km:.2f} km"
+            f"Distância real da rota (ruas): {dist_rota_km:.4f} km | "
             if id_mais_proximo
-            else "Nenhum entregador no raio."
+            else "Nenhum entregador no raio. | "
         )
+        + f"Trie: {ms_trie:.1f} ms | Busca: {ms_busca:.1f} ms | Total: {ms_total:.1f} ms"
     )
 
     return fig, linhas, msg
